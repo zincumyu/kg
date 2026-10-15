@@ -1,4 +1,6 @@
-# tests/kg —— 知识图谱模块
+# SWUST medical system Knowledge Graph demo
+---
+## tests/kg —— 知识图谱模块
 
 把患者的一句话变成「该挂哪个科」。不依赖 Django，用 pymysql 直连 MySQL。
 
@@ -9,15 +11,15 @@
 
 完整文档见 [dev-help/dev-help.md](dev-help/dev-help.md)。
 
-# 快速开始
+## 快速开始
 
-## 项目地址
+### 项目地址
 最好是`\Django_project_stream_medical\tests\kg`
 
 母项目文件夹`\Django_project_stream_medical`
 
 新建`\tests`,然后在此地址git 本项目
-## 1. 环境
+### 1. 环境
 
 1. **Python 环境** —— 母项目的 `workflows_env`,用相同的库
 
@@ -27,7 +29,7 @@
    不配也能跑，但不调 LLM（整句会答「不确定」）。
    模板见 `.env.example`
 
-## 2. 数据库
+### 2. 数据库
 
 库 `ai250301`。两个 SQL 在 `database/`，docker 首次启动时自动导入
 （**只在 `mysql-data` 为空时跑**）：
@@ -52,7 +54,7 @@ cd ..
 
 > 这两份 SQL 怎么重新生成、为什么 `medical.sql` 能瘦到 2.2 MB —— 见 [dev-help/dev-help.md](dev-help/dev-help.md)。
 
-## 3. 跑起来
+### 3. 跑起来
 
 在项目根目录执行。先激活项目环境（只需一次）：
 
@@ -65,7 +67,7 @@ python tests/kg/fctest/run_tests.py            # 跑测试（125 用例）
 ```
 
 
-## 目录结构
+### 目录结构
 
 ```
 tests/kg/
@@ -102,7 +104,7 @@ tests/kg/
     + prompts/select_nodes.md  + .env
 ```
 
-## 调用
+### 调用
 
 ```python
 import sys; sys.path.insert(0, "tests/kg")
@@ -116,7 +118,7 @@ print(deps["departments"][0]["科室"])      # 骨科专科
 
 Django 那边通过 `LLM_server/kg_bridge.py` 调同一套。
 
-# 数据
+## 数据
 
 | 维度 | 数量 |
 |---|---|
@@ -127,5 +129,7 @@ Django 那边通过 `LLM_server/kg_bridge.py` 调同一套。
 三张表：`kg_node`（节点）、`kg_edge`（关系）、`kg_alias`（口语别名）。
 `node_key` 格式 `类型:名称`，如 `symptom:腰痛`。
 
-# 注意
-- 改 `prompts/*.md` 立即生效；改科室映射/同义词要**重新导入**才生效。
+## 注意
+- 改 `prompts/*.md` 立即生效；改科室映射/同义词要**重新导入**才生效
+---
+design by zincumyu 2026.10
