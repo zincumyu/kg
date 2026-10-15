@@ -46,14 +46,9 @@ cd LLM_server
 python manage.py migrate                                          # No migrations to apply
 cd ..
 .\start_website.ps1
+```
 `migrate` 会显示 `No migrations to apply`。
 
-**重新导入 KG 数据**（改了 `symptom_synonyms.csv` 重导之后）
-```
-
-```powershell
-docker exec -i medical-mysql mysql -uroot -p1111 ai250301 < database/kg_graph.sql
-```
 
 > 这两份 SQL 怎么重新生成、为什么 `medical.sql` 能瘦到 2.2 MB —— 见 [dev-help/dev-help.md](dev-help/dev-help.md)。
 
